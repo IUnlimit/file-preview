@@ -1,44 +1,35 @@
 <template>
   <div>
     <preview-code
-        :code="entity.code"
-        :type="entity.type"
-        :is-show-line-numbers="true">
+      v-if="entity.code.length !== 0"
+      :code="entity.code"
+      :type="entity.type"
+      :is-show-line-numbers="entity.isShowLineNumbers"
+    >
     </preview-code>
   </div>
 </template>
 
-<script setup lang="ts">
-import {reactive} from "vue";
+<script setup>
+import { reactive } from "vue";
 import PreviewCode from "./fragment/preview-code.vue";
 
 const entity = reactive({
-  code: `#!/bin/bash
-get_char()
-{
-  SAVEDSTTY=\`stty -g\`
-  stty -echo
-  stty raw
-  dd if=/dev/tty bs=1 count=1 2> /dev/null
-  stty -raw
-  stty echo
-  stty $SAVEDSTTY
-}
+  code: "",
+  type: "js",
+  isShowLineNumbers: true,
+});
 
-if [ -z "$1" ]; then
-    echo '请按任意键继续...'
-else
-    echo -e "$1"
-fi
-
-get_char`,
-  type: "shell",
-})
+window["setData"] = (code, type) => {
+  entity.code = code;
+  entity.type = type;
+  return "ok";
+};
 </script>
 
 <style lang="less">
-pre, body {
+pre,
+body {
   margin: 0 !important;
 }
 </style>
-

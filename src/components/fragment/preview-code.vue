@@ -1,10 +1,12 @@
 <template>
-  <pre :class="'language-'+ type + ' ' + lineNumbers"><code
-      v-html="Prism.highlight(code, Prism.languages[type], type)"></code></pre>
+  <pre
+    :class="'language-' + type + (isShowLineNumbers ? ' line-numbers' : ' ')"
+  ><code
+          v-html="highlight"></code></pre>
 </template>
 
 <script setup lang="ts">
-import {onMounted, computed} from "vue";
+import { onMounted, computed } from "vue";
 import Prism from "prismjs";
 
 const props = defineProps({
@@ -21,15 +23,19 @@ const props = defineProps({
     default: false,
   },
 });
-const lineNumbers = computed(() => {
-  return props.isShowLineNumbers ? "line-numbers" : "";
-});
+
+let highlight = computed(() =>
+  Prism.highlight(props.code, Prism.languages[props.type], props.type)
+);
+
 onMounted(() => {
-  Prism.highlightAll(); //切换菜单重新渲染
+  Prism.highlightAll();
 });
 </script>
 
-<style scoped>
-
+<style>
+pre.line-numbers,
+pre.no-line-numbers {
+  white-space: pre-wrap;
+}
 </style>
-

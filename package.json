@@ -13,7 +13,8 @@
     "prismjs": "^1.29.0",
     "rollup-plugin-esbuild": "^5.0.0",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-pdf-embed": "^1.1.5",
+    "vue3-pdfjs": "^0.1.6"
   },
   "devDependencies": {
     "@types/node": "^18.15.8",

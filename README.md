@@ -8,9 +8,9 @@ complete.
 ## Support types
 
 - [x] code
-- [ ] word, excel, pdf
-- [ ] image
-- [ ] video
+- [x] markdown
+- [x] pdf, word, excel, ppt
+- [x] image
 - [ ] etc.
 
 ## Local development

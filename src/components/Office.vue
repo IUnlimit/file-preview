@@ -1,15 +1,10 @@
 <template>
-  <div v-if="entity.type.toLowerCase() === 'pdf'">
-    <office-pdf
-      v-if="entity.data.length !== 0"
-      :pdf-url="'data:application/pdf;base64,' + entity.data"
-    />
-  </div>
-  <div v-else-if="checkOffice()">
+  <div v-if="checkOffice()">
     <iframe
       :src="'https://view.officeapps.live.com/op/view.aspx?src=' + entity.data"
       class="office-online"
       frameborder="0"
+      sandbox="allow-top-navigation allow-scripts allow-forms"
     >
     </iframe>
   </div>
@@ -17,13 +12,11 @@
 
 <script setup>
 import { reactive } from "vue";
-import OfficePdf from "./fragment/office-pdf.vue";
 
-// pdf -> base64 data
 // others -> online url
 const entity = reactive({
   data: "",
-  type: "pdf",
+  type: "doc",
 });
 
 function checkOffice() {

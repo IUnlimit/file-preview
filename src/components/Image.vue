@@ -1,5 +1,5 @@
 <template>
-  <div v-if="entity.data.length !== 0" class="dialog-body-content-base-style">
+  <div v-if="entity.data.length !== 0">
     <img :src="entity.data" alt="pic" />
   </div>
 </template>
@@ -18,14 +18,3 @@ window["setData"] = (base64, type) => {
   return "ok";
 };
 </script>
-
-<style scoped>
-.dialog-body-content-base-style {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  justify-content: center;
-}
-</style>

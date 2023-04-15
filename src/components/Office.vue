@@ -1,5 +1,5 @@
 <template>
-  <div v-if="checkOffice()">
+  <div v-if="entity.data.length !== 0">
     <iframe
       :src="'https://view.officeapps.live.com/op/view.aspx?src=' + entity.data"
       class="office-online"
